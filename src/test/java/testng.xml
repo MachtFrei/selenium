@@ -11,7 +11,9 @@
                     <include name="phones" />
                     <include name="search" />
                     <include name="isactive" />
-                    <include name="" />
+                    <include name="type_menu" />
+                    <include name="click_additional" />
+                    <include name="final_check" />
                     <include name="setupAfterSuite" />
                 </methods>
             </class>

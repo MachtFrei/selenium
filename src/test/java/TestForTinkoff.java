@@ -16,6 +16,8 @@ import org.testng.xml.*;
 
 
 import java.util.List;
+import java.util.Random;
+
 
 import static com.thoughtworks.selenium.SeleneseTestNgHelper.assertEquals;
 
@@ -65,7 +67,7 @@ public class TestForTinkoff {
             System.out.println(lists_t3);
             for (WebElement top3_it : lists_t3) {
                 j++;
-                System.out.println(top3_it.findElement(By.xpath(".//a")).getText());
+                System.out.println(top3_it.findElement(By.xpath(".//a")).getAttribute("value"));
 //                почему-то не выходит получить текст, но проверку что их 3 сделал
             }
         }
@@ -93,6 +95,64 @@ public class TestForTinkoff {
         }
         assertEquals(onstock.isSelected(), true);
     }
+
+    @Test(description = "open typ menu")
+    public void type_menu(){
+        selenium.findElement(By.xpath("//*[contains(text(),'Тип')]")).click();
+        selenium.findElement(By.xpath("//label[contains(text(), 'смартфон')]"));
+
+    }
+
+    @Test(description = "additional cases")
+    public void click_additional() throws InterruptedException {
+        WebElement smart = selenium.findElement(By.id("glf-2142542726-1195192805"));
+        if ( !smart.isSelected() )
+        {
+            smart.click();
+        }
+        assertEquals(smart.isSelected(), true);
+
+        WebElement droid = selenium.findElement(By.id("glf-2134007594-select"));
+        if ( !droid.isSelected() )
+        {
+            droid.click();
+        }
+        assertEquals(droid.isSelected(), true);
+        Thread.sleep(1000);
+    }
+
+    @Test(description = "final_check")
+    public void final_check() throws InterruptedException {
+        Thread.sleep(10000);
+        Random random = new Random();
+        int j=0;
+        int i=0;
+        List<WebElement> models_w_hirate = null;
+        List<WebElement> list_of_models = selenium.findElements(By.className("snippet-card"));
+        for (WebElement model : list_of_models) {
+            j++;
+            String rate = model.findElement(By.className("rating")).getText();
+            float rating = Float.parseFloat(rate);
+            if (rating>=3.5 && rating <=4.5) {
+                models_w_hirate.add(i, model);
+                i++;
+            }
+        }
+
+        for (int y =0; y < 3; y++) {
+            int index = random.nextInt(models_w_hirate.size());
+            WebElement model1 = models_w_hirate.get(index);
+
+            System.out.println("phone is " + model1.findElement(By.className("snippet-card__header-text")).getText());
+            System.out.println("number in menu is " + j);
+            System.out.println("min price is " + model1.findElement(By.className("snippet-card__price")).findElement(By.className("price")).getText());
+            System.out.println("max price is " + model1.findElement(By.className("snippet-card__subprice")).findElement(By.className("price")).getText());
+        }
+
+
+    }
+
+
 
 
 
