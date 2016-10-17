@@ -15,7 +15,9 @@ import org.testng.annotations.*;
 import org.testng.xml.*;
 
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.List.*;
 import java.util.Random;
 
 
@@ -127,7 +129,7 @@ public class TestForTinkoff {
         Random random = new Random();
         int j=0;
         int i=0;
-        List<WebElement> models_w_hirate = null;
+        List<WebElement> models_w_hirate = new ArrayList<WebElement>();
         List<WebElement> list_of_models = selenium.findElements(By.className("snippet-card"));
         for (WebElement model : list_of_models) {
             j++;
