@@ -1,0 +1,20 @@
+<suite name="ForTinkoff" verbose="10">
+
+
+    <test name="ForTin" preserve-order="true">
+        <classes>
+            <class name="TestForTinkoff">
+                <methods>
+                    <include name="setupBeforeSuite" />
+                    <include name="launchSite" />
+                    <include name="catalog" />
+                    <include name="phones" />
+                    <include name="search" />
+                    <include name="isactive" />
+                    <include name="" />
+                    <include name="setupAfterSuite" />
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
